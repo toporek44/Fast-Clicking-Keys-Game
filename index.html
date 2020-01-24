@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/src/style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <button class="unpause">UNPAUSE</button>
+    <div class="menu__container">
+        <div class="menu__text">You lost!</div>
+        <div class="menu__score"></div>
+        <button class="menu__item play">PLAY</button>
+        <button class="menu__item rank">RANKING</button>
+
+    </div>
+    <div class="start__timer"></div>
+    <div class="container">
+
+        <div class="navigation__bar">
+            <div class="rainbow__off">
+                <span>Rainbow</span>
+                <button class="rainbow__switch">ON</button>
+            </div>
+            <div class="lifes">
+                <div class="life"></div>
+                <div class="life"></div>
+                <div class="life"></div>
+            </div>
+
+            <div class="score">
+                <button class="pause__container">
+                    <div class="pause__item"></div>
+                </button>
+                <div class="score__counter">Your score: 0</div>
+            </div>
+
+        </div>
+        <div class="keyboard">
+
+            <section class="key-row">
+                <div data-key="192" class="key one">~</div>
+                <div data-key="49" class="key one">1</div>
+                <div data-key="50" class="key one">2</div>
+                <div data-key="51" class="key one">3</div>
+                <div data-key="52" class="key one">4</div>
+                <div data-key="53" class="key one">5</div>
+                <div data-key="54" class="key one">6</div>
+                <div data-key="55" class="key one">7</div>
+                <div data-key="56" class="key one">8</div>
+                <div data-key="57" class="key one">9</div>
+                <div data-key="48" class="key one">0</div>
+                <div data-key="189" class="key one">-</div>
+                <div data-key="187" class="key one">=</div>
+                <div data-key="8" class="key two r">backspace</div>
+            </section>
+
+            <section class="key-row">
+                <div data-key="9" class="key one-one-half l">tab</div>
+                <div data-key="81" class="key one">q</div>
+                <div data-key="87" class="key one">w</div>
+                <div data-key="69" class="key one">e</div>
+                <div data-key="82" class="key one">r</div>
+                <div data-key="84" class="key one">t</div>
+                <div data-key="89" class="key one">y</div>
+                <div data-key="85" class="key one">u</div>
+                <div data-key="73" class="key one">i</div>
+                <div data-key="79" class="key one">o</div>
+                <div data-key="80" class="key one">p</div>
+                <div data-key="219" class="key one">[</div>
+                <div data-key="221" class="key one">]</div>
+                <div data-key="220" class="key one">\</div>
+            </section>
+
+            <section class="key-row">
+                <div data-key="20" class="key two l">search</div>
+                <div data-key="65" class="key one">a</div>
+                <div data-key="83" class="key one">s</div>
+                <div data-key="68" class="key one">d</div>
+                <div data-key="70" class="key one">f</div>
+                <div data-key="71" class="key one">g</div>
+                <div data-key="72" class="key one">h</div>
+                <div data-key="74" class="key one">j</div>
+                <div data-key="75" class="key one">k</div>
+                <div data-key="76" class="key one">l</div>
+                <div data-key="186" class="key one">;</div>
+                <div data-key="222" class="key one">'</div>
+                <div data-key="13" class="key two r">enter</div>
+            </section>
+
+            <section class="key-row">
+                <div data-key="16" class="key two-two-half l">shift</div>
+                <div data-key="90" class="key one">z</div>
+                <div data-key="88" class="key one">x</div>
+                <div data-key="67" class="key one">c</div>
+                <div data-key="86" class="key one">v</div>
+                <div data-key="66" class="key one">b</div>
+                <div data-key="78" class="key one">n</div>
+                <div data-key="77" class="key one">m</div>
+                <div data-key="188" class="key one">&lt;</div>
+                <div data-key="190" class="key one">></div>
+                <div data-key="191" class="key one">/</div>
+                <div class="empty__key two-two-half r">shift</div>
+            </section>
+
+            <section class="key-row">
+                <div data-key="17" class="key one-one-half l">ctrl</div>
+                <div data-key="18" class="key one-one-half ">alt</div>
+                <div data-key="32" class="key space">
+                    <!-- Spacebar -->
+                </div>
+                <!-- <div class="key one-one-half "></div> -->
+                <!-- <div data-key="17" class="key one-one-half r">ctrl</div> -->
+                <div class="empty__key one-one-half ">alt</div>
+                <div class="empty__key one-one-half r">ctrl</div>
+
+                <!-- <div class="arrowkey-container two-two-half"> -->
+            </section>
+
+        </div>
+
+    </div>
+    <script src="/src/App.js"></script>
+
+</body>
+
+</html>
