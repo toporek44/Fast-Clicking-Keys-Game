@@ -1,3 +1,7 @@
+// Created and invented by Maciej Topor all rights reserved 2020
+// Keyboard Fast Click Game
+//Enjoy!
+
 const allKeys = [...document.querySelectorAll(".key")];
 const score = document.querySelector(".score__counter");
 const rainbowBtn = document.querySelector(".rainbow__switch");
@@ -26,13 +30,13 @@ let randKeyIndexTimeout;
 let rmvKeyActiveTimeout;
 let checkTimeTimeout;
 
-let xd = true;
-
 const Colors = {
   r: 0,
   g: 0,
   b: 0
 };
+
+// Couting 3.. 2.. 1.. 0.. fnc
 
 const timerIntervalFnc = () => {
   startTimerInterval = setInterval(() => {
@@ -50,7 +54,6 @@ const timerIntervalFnc = () => {
 };
 
 const startGame = () => {
-  console.log("xd");
   menuContainerDiv.style.transform = "translate(-50%,-200%)";
   containerDiv.style.filter = "blur(0)";
   scoreHandler = 0;
@@ -62,6 +65,8 @@ const startGame = () => {
   timerIntervalFnc();
 };
 
+// timeout that can be paused or resumed
+
 const Timer = function(callback, delay) {
   var timerId,
     start,
@@ -70,14 +75,12 @@ const Timer = function(callback, delay) {
   this.pause = function() {
     window.clearTimeout(timerId);
     remaining -= Date.now() - start;
-    console.log("pauza");
   };
 
   this.resume = function() {
     start = Date.now();
     window.clearTimeout(timerId);
     timerId = window.setTimeout(callback, remaining);
-    console.log(" koniec pauza");
   };
 
   this.resume();
@@ -85,7 +88,7 @@ const Timer = function(callback, delay) {
 
 const pauseGame = () => {
   if (stopRandIndexFlag) {
-    containerDiv.style.filter = "blur(3px)";
+    containerDiv.style.filter = "blur(4px)";
     unpause.style.visibility = "visible";
     stopRandIndexFlag = false;
     pauseFlag = false;
@@ -94,6 +97,9 @@ const pauseGame = () => {
     checkTimeTimeout.pause();
   }
 };
+
+// unpausing the game
+
 const unPause = () => {
   if (!stopRandIndexFlag) {
     containerDiv.style.filter = "blur(0)";
@@ -105,6 +111,20 @@ const unPause = () => {
     checkTimeTimeout.resume();
   }
 };
+
+const startStopRainbow = () => {
+  if (rainbowFlag) {
+    rainbowStop();
+    return;
+  }
+  rainbowBtn.textContent = "OFF";
+  rainbowBtn.classList.add("button--active");
+  rainbowFlag = true;
+  doRainbowInterval();
+};
+
+//keyboard rainbow funcion
+
 const doRainbowInterval = () => {
   if (rainbowFlag) {
     Colors.r = Math.floor(Math.random() * 254);
@@ -118,7 +138,8 @@ const doRainbowInterval = () => {
   }
 };
 
-// Turning On/Off rainbow keyboard colors
+// Turning Off rainbow keyboard colors
+
 const rainbowStop = () => {
   rainbowBtn.textContent = "ON";
   rainbowBtn.classList.remove("button--active");
@@ -128,19 +149,12 @@ const rainbowStop = () => {
   rainbowFlag = false;
 };
 
-// Random key picker
-
 const checkTime = e => {
   if (allKeys[randomKeyIndex].classList.contains("key--active")) {
     checkTimeTimeout = new Timer(() => {
       if (allKeys[randomKeyIndex].classList.contains("key--active")) {
         renderLives();
       }
-      // allKeys.forEach(key => (key.e.keyCode.disabled = true));
-      // setTimeout(() => if(e.keyCode=9){
-
-      // }, timer - 500);
-      console.log(allKeys[randomKeyIndex]);
     }, timer - 20);
   }
 };
@@ -178,27 +192,24 @@ const renderLives = () => {
   }
 };
 const randKeyIndexFnc = () => {
-  if (xd) {
-    if (stopRandIndexFlag) {
-      checkLifes();
-      if (scoreHandler % 5 == 0 && scoreHandler != 0) {
-        timer -= 100;
-        if (timer === 250) {
-          timer = 250;
-        }
+  if (stopRandIndexFlag) {
+    checkLifes();
+    // speed up system
+    if (scoreHandler % 5 == 0 && scoreHandler != 0) {
+      timer -= 100;
+      if (timer === 250) {
+        timer = 250;
       }
-      console.log(`Czas: ${timer}`);
-      randomKeyIndex = Math.floor(Math.random() * allKeys.length);
-      console.log(randomKeyIndex);
-      allKeys[randomKeyIndex].classList.add("key--active");
-      rmvKeyActiveTimeout = new Timer(() => {
-        allKeys[randomKeyIndex].classList.remove("key--active");
-      }, timer - 10);
-      // setTimeout(() => {}, );
-      checkTime();
-
-      randKeyIndexTimeout = new Timer(randKeyIndexFnc, timer);
     }
+    // random key index generator
+    randomKeyIndex = Math.floor(Math.random() * allKeys.length);
+    allKeys[randomKeyIndex].classList.add("key--active");
+    rmvKeyActiveTimeout = new Timer(() => {
+      allKeys[randomKeyIndex].classList.remove("key--active");
+    }, timer - 10);
+    checkTime();
+
+    randKeyIndexTimeout = new Timer(randKeyIndexFnc, timer);
   }
 };
 
@@ -206,20 +217,14 @@ const pickRandomKey = e => {
   e.preventDefault();
   if (pauseFlag) {
     if (startTimer === -1) {
-      console.log(`Kliknales: ${e.keyCode}`);
-
       const drawnKey = allKeys[randomKeyIndex].dataset.key;
-
       const pressedCorrectKey = document.querySelector(
         `.key[data-key="${drawnKey}"]`
       );
-
       const pressedWrongKey = document.querySelector(
         `.key[data-key="${e.keyCode}"]`
       );
-
       // Adding point to score
-
       if (drawnKey == e.keyCode) {
         if (!pressedCorrectKey.classList.contains("key--correct")) {
           scoreHandler++;
@@ -228,38 +233,23 @@ const pickRandomKey = e => {
         }
       } else {
         // Checking number of lifes
-
         checkLifes();
-
         //Taking one life
-
         renderLives();
-
-        // pressedCorrectKey.classList.add("key--correct");
-
         // Removing gold border from key
-
         allKeys[randomKeyIndex].classList.remove("key--active");
-
         // Array with keys that contains red border
-
         const containsClassKeyWrong = allKeys.filter(key =>
           key.classList.contains("key--wrong")
         );
-
         // showing wrong clicked key with red border
         if (containsClassKeyWrong.length === 0) {
           pressedWrongKey.classList.add("key--wrong");
           setTimeout(() => pressedWrongKey.classList.remove("key--wrong"), 400);
         }
-        // rainbowBtn.disabled = true;
-        // rainbowStop();
+        rainbowBtn.disabled = true;
+        rainbowStop();
       }
-
-      console.log(`Miales kliknac: ${allKeys[randomKeyIndex].dataset.key}`);
-      console.log(
-        "---------------------------------------------------------------------------------------"
-      );
     }
   }
 };
@@ -268,13 +258,4 @@ window.addEventListener("keydown", pickRandomKey);
 playBtn.addEventListener("click", startGame);
 pauseBtn.addEventListener("click", pauseGame);
 unpause.addEventListener("click", unPause);
-rainbowBtn.addEventListener("click", () => {
-  if (rainbowFlag) {
-    rainbowStop();
-    return;
-  }
-  rainbowBtn.textContent = "OFF";
-  rainbowBtn.classList.add("button--active");
-  rainbowFlag = true;
-  doRainbowInterval();
-});
+rainbowBtn.addEventListener("click", startStopRainbow);
