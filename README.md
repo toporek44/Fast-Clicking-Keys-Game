@@ -4,6 +4,6 @@ Live Demo (not compatible with mobile) :  https://toporek44.github.io/Fast-Click
 
 Planned to add a Ranking and fix the bugs.
 
-![menu](/previewImg/menu.png)
+![menu](/previewImg/menu.PNG)
 
-![gameplay](/previewImg/gameplay.png)
+![gameplay](/previewImg/gameplay.PNG)
